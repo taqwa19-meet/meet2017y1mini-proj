@@ -49,11 +49,15 @@ UP = 0
 DOWN=1
 LEFT=2
 RIGHT=3
+direction= UPUP_EDGE = 250
+DOWN_EDGE = -250
+RIGHT_EDGE = 400
+LEFT_EDGE = -400
+UP_EDGE = 250
 
 def up():
     global direction
     direction= UP
-    move_snake()
     print("you pressed the up key")
 
 def down():
@@ -64,7 +68,7 @@ def down():
 
 def right():
     global direction
-    directon= RIGHT
+    direction= RIGHT
     move_snake()
     print("you pressed the down key")
 
@@ -81,4 +85,64 @@ turtle.onkeypress(right,RIGHT_ARROW)
 turtle.onkeypress(left,LEFT_ARROW)
 turtle.onkeypress(down,DOWN_ARROW)
 
+turtle.listen()
+def move_snake():
+    new_pos = snake.pos()
+    new_x_pos = new_pos[0]
+    new_y_pos = new_pos[1]
+    my_pos=snake.pos()
+    x_pos=my_pos[0]
+    y_pos=my_pos[1]
+    turtle.ontimer(move_snake,TIME_STEP)
+
+    if direction == RIGHT:
+        snake.goto(x_pos+SQUARE_SIZE,y_pos)
+        print("you moved right")
+    elif direction ==LEFT:
+        snake.goto(x_pos-SQUARE_SIZE,y_pos)
+        print("you moved left")
+    elif direction==UP:
+        snake.goto(x_pos,y_pos+SQUARE_SIZE)
+        print("you moved up")
+    elif direction ==DOWN:
+        snake.goto(x_pos,y_pos-SQUARE_SIZE)
+        print("you moved down")
+
+
+    my_pos=snake.pos()
+    pos_list.append(my_pos)
+    new_stamp = snake.stamp()
+    stamp_list.append(new_stamp)
+    ######## SPECIAL PLACE - Remember it for Part 5
+    #pop zeroth element in pos_list to get rid of last the last
+    #piece of the tail
+    old_stamp = stamp_list.pop(0)
+    snake.clearstamp(old_stamp)
+    pos_list.pop(0)
+        
+    if new_x_pos>=RIGHT_EDGE:
+        print("you hit the right edge!game over!")
+        quit()
+    if new_x_pos<=LEFT_EDGE:
+        print("you hit the left edge!game over!")
+        quit()
+    if new_y_pos>=UP_EDGE:
+        print("you hit the up edge!game over!")
+        quit()
+    if new_y_pos<=DOWN_EDGE:
+        print("you hit the down edge ")
+        quit()
+
+move_snake()
+
+
+turtle.register_shape("trash.gif")
+food = turtle.clone()
+food.shape("trash.gif")
+
+food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
+food_stamps = []
+
+for this_food_pos in food_pos:
+    s
     
