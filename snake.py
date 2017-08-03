@@ -16,6 +16,7 @@ stamp_list=[]
 food_pos=[]
 food_stamps=[]
 
+
 #Set up positions (x,y) of boxes that make up the snake
 snake = turtle.clone()
 snake.shape("square")
@@ -146,9 +147,11 @@ def move_snake():
     ######## SPECIAL PLACE - Remember it for Part 5
     #pop zeroth element in pos_list to get rid of last the last
     #piece of the tail
-    old_stamp = stamp_list.pop(0)
-    snake.clearstamp(old_stamp)
-    pos_list.pop(0)
+
+
+    if my_pos in pos_list[0:-1]:
+        print("you ate yourself!game over!")
+        quit()
         
     if new_x_pos>=RIGHT_EDGE:
         print("you hit the right edge!game over!")
@@ -171,6 +174,11 @@ def move_snake():
         food_stamps.pop(food_ind)
         print("You have eaten the food!")
         make_food()
+    else:
+        old_stamp = stamp_list.pop(0)
+        snake.clearstamp(old_stamp)
+        pos_list.pop(0)
+    
 
     turtle.ontimer(move_snake,TIME_STEP)
 
@@ -188,7 +196,13 @@ move_snake()
 ##    food_stamps.append(food_ID)
 
 
-    
+turtle.penup()
+
+turtle.goto(-400,-250)
+turtle.pendown()
+turtle.goto
+
+
 
 
 
