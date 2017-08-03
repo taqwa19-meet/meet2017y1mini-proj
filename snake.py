@@ -1,6 +1,7 @@
 import turtle
 import random
 
+
 turtle.tracer(1,0)
 SIZE_X=800
 SIZE_Y=500
@@ -19,7 +20,7 @@ food_stamps=[]
 
 #Set up positions (x,y) of boxes that make up the snake
 snake = turtle.clone()
-snake.shape("square")
+snake.shape("circle")
 #Hide the turtle object (it's an arrow - we don't need to see it)
 turtle.hideturtle()
 
@@ -78,9 +79,9 @@ def left():
     print("you preesed the left key")
     
 #image setup
-turtle.register_shape("trash.gif")
+turtle.register_shape("deathly_hallows.gif")
 food = turtle.clone()
-food.shape("trash.gif")
+food.shape("deathly_hallows.gif")
 
 
 turtle.onkeypress(up,UP_ARROW)
@@ -97,8 +98,8 @@ def make_food():
 
     min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
     max_x=int(SIZE_X/2/SQUARE_SIZE)-1
-    min_y=-int(SIZE_Y/2/SQUARE_SIZE)-1
-    max_y=int(SIZE_Y/2/SQUARE_SIZE)+1
+    min_y=-int(SIZE_Y/2/SQUARE_SIZE)+1
+    max_y=int(SIZE_Y/2/SQUARE_SIZE)-1
 
     food_x = random.randint(min_x,max_x)*SQUARE_SIZE
     food_y = random.randint(min_y,max_y)*SQUARE_SIZE
@@ -196,12 +197,15 @@ move_snake()
 ##    food_stamps.append(food_ID)
 
 
+import turtle
+
 turtle.penup()
-
-turtle.goto(-400,-250)
+turtle.goto(-500,-300)
 turtle.pendown()
-turtle.goto
-
+turtle.goto(-500,250)
+turtle.goto(500,250)
+turtle.goto(500,-300)
+turtle.goto(-500,-300)
 
 
 
